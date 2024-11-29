@@ -1,20 +1,20 @@
 import java.util.Arrays;
+import java.util.Collections;
+
 
 class Solution {
     public long solution(long n) {
-        char[] digits = Long.toString(n).toCharArray();
+        // 문자열로 변환 후 자릿수로 배열 추출
+        String[] digits = Long.toString(n).split("");
         
-        // 문자 배열을 오름차순으로 정렬
-        Arrays.sort(digits);
+        // 내림차순 정렬
+        Arrays.sort(digits, Collections.reverseOrder());
         
-        // 문자 배열을 뒤집기
-        for (int i = 0; i < digits.length / 2; i++) {
-            char temp = digits[i];
-            digits[i] = digits[digits.length - 1 - i];
-            digits[digits.length - 1 - i] = temp;
-        }
+        // 문자열로 조합
+        String sorted = String.join("",digits);
         
-        // 정렬된 문자 배열을 long으로 변환
-        return Long.parseLong(new String(digits));
+        // 문자열 숫자로 변환 후 반환
+        return Long.parseLong(sorted);
+        
     }
 }
