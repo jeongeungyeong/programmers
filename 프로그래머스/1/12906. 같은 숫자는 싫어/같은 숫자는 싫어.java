@@ -2,26 +2,23 @@ import java.util.*;
 
 public class Solution {
     public int[] solution(int []arr) {
-        ArrayList<Integer> list = new ArrayList<>();
+        // 스택 선언
+        Stack<Integer> stack = new Stack<>();
         
-        // 첫 번째 추가
-        if(arr.length > 0){
-            list.add(arr[0]);
-        }
-        
-        // 중복 검사 진행 및 추가
-        for(int i =1; i<arr.length; i++){
-            if(arr[i] != arr[i-1]){
-                list.add(arr[i]);
+        // 스택을 활용해 중복값 제거
+        for(int num : arr){
+            // 스택이 비었거나, 스택의 최상단 값이 num과 다르면 삽입
+            if(stack.isEmpty() || stack.peek() != num){
+                stack.push(num);
             }
         }
         
-        // int 배열로 변환하기
-        int[] answer = new int[list.size()];
-        for(int i=0; i<list.size(); i++){
-            answer[i] = list.get(i);
+        // 정답 배열 선언
+        int[] answer = new int[stack.size()];
+        // 스택의 값 뒤에서부터 배열에 담기
+        for(int i = answer.length -1; i>= 0; i--){
+            answer[i] = stack.pop();
         }
-        
 
         return answer;
     }
