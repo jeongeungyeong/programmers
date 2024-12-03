@@ -1,19 +1,19 @@
 class Solution {
-    public int solution(int[] number) {        
-        return countTriples(number, 0, new int[3], 0);
-    }
-    
-    // 3씩 잘라서 비교하기
-    private int countTriples(int[] number, int start, int[] current, int index){
-        if(index == 3){
-            return (current[0] + current[1] + current[2] == 0 ) ? 1 : 0;
-        }
+    public int solution(int[] number) {
+        // 삼총사 개수 
+        int answer = 0;
         
-        int count = 0;
-        for(int i = start; i<number.length; i++){
-            current[index] = number[i];
-            count += countTriples(number, i+1, current, index+1);
+        // 3개의 숫자를 선택하는 모든 조합
+        for(int i = 0; i <number.length; i++){
+            for (int j = i +1; j < number.length; j++){
+                for (int k = j+1; k < number.length; k++){
+                    // 세 숫자의 합이 0이면 삼총사
+                    if (number[i]+number[j]+number[k] == 0){
+                        answer++;
+                    }
+                }
+            }
         }
-        return count;
+        return answer;
     }
 }
