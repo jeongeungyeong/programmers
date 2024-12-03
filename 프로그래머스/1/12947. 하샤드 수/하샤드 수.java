@@ -1,15 +1,14 @@
 class Solution {
     public boolean solution(int x) {
+        int originX = x;
         // 자릿수의 합
-        int sumOfDigits = 0;
-        // 원래 숫자
-        int originNum = x;
+        int sum = 0;
         
-        while(x > 0){
-            sumOfDigits += x%10;
-            x = x/10;
+        while (x > 0){
+            sum += x % 10;
+            x /= 10;
         }
         
-        return originNum % sumOfDigits == 0;
+        return originX%sum == 0 ? true : false;
     }
 }
