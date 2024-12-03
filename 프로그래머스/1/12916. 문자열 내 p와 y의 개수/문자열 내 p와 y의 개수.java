@@ -1,21 +1,20 @@
+import java.util.Arrays;
+
 class Solution {
     boolean solution(String s) {
-        // 모두 소문자 변경
-        String lower = s.toLowerCase();
-        // p, y 카운트
-        int pCount = 0;
-        int yCount = 0;
+        char[] charArray = s.toCharArray();
+        // p와 y의 개수
+        int count = 0;
         
-        for(char c : lower.toCharArray()){
-            if(c == 'p'){
-                pCount ++;
+        for(int i =0; i<charArray.length; i++){
+            if(charArray[i] == 'p' || charArray[i] == 'P'){
+                count++;
             }
-            else if (c == 'y'){
-                yCount ++;
+            else if(charArray[i] == 'Y' || charArray[i] == 'y') {
+                count--;
             }
-        } 
+        }
         
-       return pCount == yCount;
-
+        return count == 0;
     }
 }
